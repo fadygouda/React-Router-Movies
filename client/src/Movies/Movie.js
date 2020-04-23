@@ -5,9 +5,10 @@ import { useParams } from "react-router-dom"
 
 const Movie = (props) => {
   const [movie, setMovie] = useState();
-  const { id } = useParams();
+  const params = useParams();
+  const id = params.movieID;
   useEffect(() => {
-    
+  
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
 
@@ -23,9 +24,10 @@ const Movie = (props) => {
   },[id]);
   
   // Uncomment this only when you have moved on to the stretch goals
-  const saveMovie = () => {
-   const addToSavedList = props.addToSavedList;
-   addToSavedList(movie);
+  //const saveMovie = () => {
+   //const addToSavedList = props.addToSavedList;
+   //addToSavedList(movie);
+   //console.log(props)
   // }
 
   if (!movie) {
@@ -43,7 +45,7 @@ const Movie = (props) => {
         <div className="movie-metascore">
           Metascore: <strong>{metascore}</strong>
         </div>
-        <h3>Actors: </h3>
+        <h3>Actors</h3>
 
         {stars.map(star => (
           <div key={star} className="movie-star">
@@ -51,9 +53,9 @@ const Movie = (props) => {
           </div>
         ))}
       </div>
-      <div onClick={{saveMovie}}className="save-button" >Save</div>
+      <div className="save-button">Save</div>
     </div>
   );
 }
-}
+
 export default Movie;

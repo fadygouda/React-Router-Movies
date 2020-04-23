@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import SavedList from './Movies/SavedList';
-import { Route, Switch } from "react-router-dom"
+import { Route } from "react-router-dom"
 import MovieList from "./Movies/MovieList"
 import Movie from "./Movies/Movie"
 
 const App = () => {
   const [savedList, setSavedList] = useState([]);
   
-  const addToSavedList = movie => {
+  const addToSavedList = (movie) => {
     setSavedList([...savedList, movie]);
   };
 
@@ -15,18 +15,20 @@ const App = () => {
     <div>
         
         <SavedList list={savedList} />
-        <Switch>
-      <Route path="/" />
-        <MovieList />
-      <Route path ="/movies/:id" >
-        <Movie addToSavedList= {addToSavedList}/>/>
+        <Route path ="/movies/:movieID" >
+        <Movie movies={addToSavedList}/>
         </Route>
-      </Switch>
+      <Route path="/">
+        <MovieList />
+        </Route>
+        
+        
         
       
 
     </div>
   );
-};
+  }
+
 
 export default App;
